@@ -1,7 +1,5 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { StyleSheet, Text, ScrollView, TouchableOpacity } from "react-native";
-import { collection, addDoc, getDocs } from "firebase/firestore";
-import IndexScreen from "./components/IndexScreen";
 import { useRouter } from "expo-router";
 
 const Index = () => {

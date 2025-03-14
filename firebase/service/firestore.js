@@ -1,8 +1,7 @@
 import { db } from "../config"; // Asegúrate de que 'config.js' tiene la inicialización de Firebase
 import { collection, query, where, doc, setDoc, getDocs, updateDoc, arrayUnion, serverTimestamp } from "firebase/firestore";
 
-
-// 📌 **Función para registrar un usuario en Firestore**
+//  **Función para registrar un usuario en Firestore**
 export const registrarUsuario = async (uid, nombre, email) => {
     try {
       const usuarioRef = doc(db, "usuarios", uid);
@@ -18,7 +17,7 @@ export const registrarUsuario = async (uid, nombre, email) => {
     }
   };
 
-// 📌 **Función para crear un grupo**
+//  **Función para crear un grupo**
 export const crearGrupo = async (nombreGrupo, uidCreador) => {
   try {
     const grupoRef = doc(collection(db, "grupos")); // Genera un ID único

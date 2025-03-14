@@ -12,14 +12,12 @@ export const agregarGasto = async (grupoID, descripcion, monto, pagadoPorUID, di
             console.error("❌ El grupo no existe.");
             return;
         }
-
-        const creadorUID = grupoDoc.data().creador; // 🔥 Obtener UID del creador
+        const creadorUID = grupoDoc.data().creador; // UID del creador
 
         // 🔹 Asegurar que el creador del grupo está en 'divididoEntreUIDs'
         if (!divididoEntreUIDs.includes(creadorUID)) {
             divididoEntreUIDs.push(creadorUID);
         }
-
         console.log("📌 Miembros actualizados (incluyendo creador si faltaba):", divididoEntreUIDs);
 
         const gastosRef = collection(db, `grupos/${grupoID}/gastos`);
@@ -33,7 +31,7 @@ export const agregarGasto = async (grupoID, descripcion, monto, pagadoPorUID, di
         console.log("📌 Pagado por:", pagadoPor);
         console.log("📌 Dividido entre:", divididoEntre);
 
-        // **1️⃣ Agregar el gasto**
+        // **1️ Agregar el gasto**
         const gastoDoc = await addDoc(gastosRef, {
             descripcion,
             monto,
@@ -44,7 +42,7 @@ export const agregarGasto = async (grupoID, descripcion, monto, pagadoPorUID, di
 
         console.log("✅ Gasto agregado:", gastoDoc.id);
 
-        // **2️⃣ Registrar cada deuda**
+        // **2️ Registrar cada deuda**
         const montoPorPersona = monto / divididoEntre.length;
         console.log("💰 Monto por persona:", montoPorPersona);
 
@@ -58,8 +56,7 @@ export const agregarGasto = async (grupoID, descripcion, monto, pagadoPorUID, di
                 console.log("✅ Deuda registrada:", deudaDoc.id, "Deudor:", deudor);
             }
         }
-
-        // **3️⃣ Agregar al historial de pagos**
+        // **3️ Agregar al historial de pagos**
         for (const deudor of divididoEntre) {
             if (deudor !== pagadoPor) {
                 const historialDoc = await addDoc(historialRef, {

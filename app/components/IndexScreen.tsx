@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { View, Text } from "react-native";
-import { auth } from "../../firebase/config"; // Asegúrate de importar bien `config.ts`
+import { auth } from "../../firebase/config";
 import { onAuthStateChanged, User } from "firebase/auth";
 
 export default function IndexScreen() {

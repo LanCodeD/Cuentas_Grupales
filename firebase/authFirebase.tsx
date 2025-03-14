@@ -1,9 +1,5 @@
-import { auth,db } from "./config"; // Asegúrate de importar desde donde tienes tu configuración de Firebase
-import { 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, 
-  signOut 
-} from "firebase/auth";
+import { auth,db } from "./config"; 
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { registrarUsuario } from "./service/firestore";
 import { doc, getDoc, collection, query, where, getDocs } from "firebase/firestore";
 
@@ -12,10 +8,8 @@ export const registerUser = async (nombre: string, email: string, password: stri
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
-
     // Llamamos a la función que ya creaste en `firestore.js`
     await registrarUsuario(user.uid, nombre, email);
-
     return user;
   } catch (error) {
     throw error;

@@ -50,7 +50,7 @@ export default function Ingresar() {
 
         {/* Mensaje de registro */}
         <Text style={styles.registerText}>
-          ¿No tienes cuenta? <Text style={styles.registerLink}>Regístrate</Text>
+          ¿No tienes cuenta? <TouchableOpacity style={styles.button} onPress={()=>router.push("/Screens/Registrar")}><Text style={styles.buttonText}>Regístrate</Text></TouchableOpacity>
         </Text>
       </View>
     </ScrollView>
@@ -109,8 +109,5 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "#555",
   },
-  registerLink: {
-    color: "#007BFF",
-    fontWeight: "bold",
-  },
+
 });
